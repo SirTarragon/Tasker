@@ -1,0 +1,86 @@
+﻿<Page
+    x:Class="UWPTaskManagement.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:UWPTaskManagement"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="15*"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0*"></ColumnDefinition>
+<!--                <ColumnDefinition Width="1*"></ColumnDefinition>-->
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="10*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+ <!--           <Button Grid.Column="0" Content="Save" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="Save_Click"></Button>
+            <Button Grid.Column="1" Content="Load" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="Load_Click"></Button>-->
+            <Button Grid.Column="1" Name="LoadButton"  Content="Online" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="Load_Click"></Button>
+            <TextBox Grid.Column="2" Text="{Binding Path=Query, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <Button Grid.Column="3" Content="Search" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="Search_Click"></Button>
+        </Grid>
+        <Grid Grid.Row="1">
+            <ListBox ItemsSource="{Binding Path=Items, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                     SelectedItem="{Binding Path=SelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     SelectionMode="Multiple" SelectionChanged="Items_SelectionChanged">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition Width="10*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0">
+                                <CheckBox Visibility="{Binding Path=IsCompleteVisibility}" 
+                                          IsChecked="{Binding Path=IsCompleted, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" 
+                                          Click="IsCompleted_Checked"
+                                          Tag="{Binding Path=ID}"></CheckBox>
+                            </Grid>
+                            <Grid Grid.Column="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition></ColumnDefinition>
+                                        <ColumnDefinition></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="0" FontWeight="ExtraBold" Text="Priority  ::"></TextBlock>
+                                    <TextBlock Grid.Column="1" Text="{Binding Path=Priority}"></TextBlock>
+                                </Grid>
+                                <TextBlock Grid.Row="1" FontWeight="ExtraBold" Text="{Binding Path=Name}"></TextBlock>
+                                <TextBlock Grid.Row="2" Text="{Binding Path=Description}"></TextBlock>
+                            </Grid>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Grid>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <!--<ColumnDefinition></ColumnDefinition>-->
+            </Grid.ColumnDefinitions>
+            <Button Name="ItemManip" Content="New Item" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="Add_Click"></Button>
+            <!--<Button Content="Edit Selected" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="Edit_Click"></Button>-->
+            <Button Content="Delete Selected" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="Delete_Click"></Button>
+            <Button Content="View Details" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="View_Click"></Button>
+            <Button Content="Options" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="Sort_Click"></Button>
+        </Grid>
+    </Grid>
+</Page>

@@ -1,0 +1,27 @@
+﻿<ContentDialog
+    x:Class="UWPTaskManagement.Dialogs.ListSortDialog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:UWPTaskManagement.Dialogs"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Title="Options"
+    PrimaryButtonText="Return"
+    PrimaryButtonClick="ContentDialog_PrimaryButtonClick">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <CheckBox Grid.Row="0" Content="Show Completed Items" IsChecked="{Binding Path=ShowComplete, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></CheckBox>
+        <TextBlock Grid.Row="1" Text="Sorting Methods"></TextBlock>
+        <RadioButton Grid.Row="2" Name="PrioritySort" Content="Priority" Click="RadioButton_Click" GroupName="SortMeth"></RadioButton>
+        <RadioButton Grid.Row="3" Name="IDSort" Content="Item ID" Click="RadioButton_Click" GroupName="SortMeth"/>
+        <RadioButton Grid.Row="4" Content="No Resorting" Click="RadioButton_Click" GroupName="SortMeth" IsChecked="True"></RadioButton>
+    </Grid>
+</ContentDialog>
