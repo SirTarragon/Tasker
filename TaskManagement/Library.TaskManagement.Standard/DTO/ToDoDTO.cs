@@ -17,7 +17,7 @@ namespace Library.TaskManagement.Standard.DTO
             Deadline = (i as ToDo)?.Deadline ?? new DateTimeOffset(DateTime.Now);
             IsCompleted = (i as ToDo)?.IsCompleted ?? false;
         }
-        
+
         public ToDoDTO()
         { Deadline = new DateTimeOffset(DateTime.Now); }
     }

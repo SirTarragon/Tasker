@@ -18,7 +18,7 @@ namespace Library.TaskManagement.services
         private ObservableCollection<ItemDTO> items;
         private ListNavigator<Item> listNav;
         private int _idcount;
-//        private string persistencePath;
+        //        private string persistencePath;
         private JsonSerializerSettings serializerSettings
             = new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.All };
 
@@ -32,7 +32,7 @@ namespace Library.TaskManagement.services
         {
             get
             {
-                if(UseAPI)
+                if (UseAPI)
                 {
                     try
                     {
@@ -42,13 +42,13 @@ namespace Library.TaskManagement.services
                     }
                     catch (Exception e)
                     {
-//                        UseAPI = false;
+                        //                        UseAPI = false;
                         Console.WriteLine(e);
                         Clear();
                         LoadFromDisk();
                         return items;
                     }
-                } 
+                }
                 else
                 {   // local directory stuff is being used
                     Clear();
@@ -65,7 +65,7 @@ namespace Library.TaskManagement.services
 
         public int IDCount
         {
-            get 
+            get
             {
                 var local = Items;
                 var check = local.Select(i => i.ID).Max() + 1;
@@ -105,7 +105,7 @@ namespace Library.TaskManagement.services
             try
             {
                 LoadFromServer();
-            } 
+            }
             catch (Exception e)
             {
                 UseAPI = false;
@@ -129,10 +129,10 @@ namespace Library.TaskManagement.services
                 .DeserializeObject<List<ItemDTO>>(new WebRequestHandler()
                 .Get($"{urlRoot}/Item").Result);
 
-			if (payload != null) 
-			{
-				payload.ToList().ForEach(items.Add);
-			}
+            if (payload != null)
+            {
+                payload.ToList().ForEach(items.Add);
+            }
             // listNav = new ListNavigator<ItemDTO>(Items, 5);
         }
 
@@ -143,20 +143,20 @@ namespace Library.TaskManagement.services
             List<Appointment>? localAppts = local.Appointments;
             List<ToDo>? localToDos = local.ToDos;
 
-            if(localAppts != null)
+            if (localAppts != null)
             {
                 var payload = localAppts.Select(i => new AppointmentDTO(i));
                 payload.ToList().ForEach(items.Add);
             }
 
-            if(localToDos != null)
+            if (localToDos != null)
             {
                 var payload = localToDos.Select(i => new ToDoDTO(i));
                 payload.ToList().ForEach(items.Add);
             }
         }
 
-        public async Task<ItemDTO> Add(ItemDTO i) 
+        public async Task<ItemDTO> Add(ItemDTO i)
         {
             if (_useAPI)
             {
@@ -169,7 +169,7 @@ namespace Library.TaskManagement.services
             else
             {
                 var local = Filebase.Current;
-                if(i is ToDoDTO)
+                if (i is ToDoDTO)
                 {
                     local.AddOrUpdate(new ToDo(i as ToDoDTO));
                 }
@@ -187,17 +187,17 @@ namespace Library.TaskManagement.services
 
         public async Task<ItemDTO> Remove(ItemDTO i)
         {
-            if(_useAPI)
+            if (_useAPI)
             {
                 return await Remove(i.ID);
             }
             else
             {
                 var local = Filebase.Current;
-                if(i is ToDoDTO)
+                if (i is ToDoDTO)
                 {
                     local.Delete("TODO", i.ID);
-                } 
+                }
                 else if (i is AppointmentDTO)
                 {
                     local.Delete("APPOINTMENT", i.ID);
@@ -229,12 +229,12 @@ namespace Library.TaskManagement.services
                 ToDo? IsToDo = local.Get("TODO", id) as ToDo;
                 Appointment? IsAppt = local.Get("APPOINTMENT", id) as Appointment;
 
-                if(IsToDo != null)
+                if (IsToDo != null)
                 {
                     local.Delete("TODO", id);
                     return new AppointmentDTO(IsAppt);
-                } 
-                else if(IsAppt != null)
+                }
+                else if (IsAppt != null)
                 {
                     local.Delete("APPOINTMENT", id);
                     return new ToDoDTO(IsToDo);
@@ -268,7 +268,7 @@ namespace Library.TaskManagement.services
             items.Clear();
         }
 
-        public ItemDTO? GetByID (int id)
+        public ItemDTO? GetByID(int id)
         { return items.FirstOrDefault(t => t.ID == id); }
 
         public int NextID

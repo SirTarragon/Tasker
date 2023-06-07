@@ -28,7 +28,7 @@ namespace UWPTaskManagement.services
                 {
                     return new ObservableCollection<ItemViewModel>
                         (itemService.Search(Query).Select(i => new ItemViewModel(i)));
-                } 
+                }
                 else
                 {
                     return new ObservableCollection<ItemViewModel>

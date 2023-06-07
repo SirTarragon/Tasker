@@ -24,8 +24,12 @@ jobs:
       - name: Install dotnet-format tool
         run: dotnet tool install -g dotnet-format
 
-      - name: Format
-        run: dotnet-format -f Assets/Scripts -v d
+      - name: Format Main
+        run: dotnet-format -f TaskManagement -v d
+        working-directory: ${{env.working-directory}}
+        
+      - name: Format API
+        run: dotnet-format -f API.TaskManagement -v d
         working-directory: ${{env.working-directory}}
 
       - name: Commit changes

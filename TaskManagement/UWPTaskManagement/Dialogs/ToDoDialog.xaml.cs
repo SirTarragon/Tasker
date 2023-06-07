@@ -38,7 +38,7 @@ namespace UWPTaskManagement.Dialogs
             DataContext = item.BoundToDo;
 
             _priority = item.BoundToDo.Priority;
-            switch(_priority)
+            switch (_priority)
             {
                 case 1:
                     OneR.IsChecked = true;
@@ -74,7 +74,7 @@ namespace UWPTaskManagement.Dialogs
 
         private void ContentDialog_SecondaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         { }
-        
+
         private void RadioButton_Click(object sender, RoutedEventArgs e)
         {
             RadioButton radioButton = (RadioButton)sender;

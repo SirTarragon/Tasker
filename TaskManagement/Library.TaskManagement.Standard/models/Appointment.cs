@@ -15,21 +15,23 @@ namespace Library.TaskManagement.models
         [JsonProperty]
         public ObservableCollection<string> Attendees { get; set; }
 
-        public Appointment() {
+        public Appointment()
+        {
             Start = new DateTimeOffset(DateTime.Now);
             End = new DateTimeOffset(DateTime.Now);
             Attendees = new ObservableCollection<string>();
         }
 
-        public Appointment(AppointmentDTO dto) : base (dto)
+        public Appointment(AppointmentDTO dto) : base(dto)
         {
             Start = dto.Start;
             End = dto.End;
             Attendees = dto.Attendees;
         }
 
-        public override string ToString() {
-            return $"ID: {ID} NAME: {Name}\nDESCRIPTION:\n{Description}\n"+
+        public override string ToString()
+        {
+            return $"ID: {ID} NAME: {Name}\nDESCRIPTION:\n{Description}\n" +
                 $"From {Start} to {End}\n{string.Join(", ", Attendees)}";
         }
     }

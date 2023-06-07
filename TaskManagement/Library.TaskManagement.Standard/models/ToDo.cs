@@ -13,11 +13,11 @@ namespace Library.TaskManagement.models
 
         public override string ToString()
         {
-            return $"ID: {ID} NAME: {Name}\nDESCRIPTION:\n{Description}\n"+
+            return $"ID: {ID} NAME: {Name}\nDESCRIPTION:\n{Description}\n" +
                 $"DEADLINE: {Deadline}\nCOMPLETION: {IsCompleted}";
         }
 
-        public ToDo() 
+        public ToDo()
         { Deadline = new DateTimeOffset(DateTime.Now); }
 
         public ToDo(ToDoDTO dto) : base(dto)

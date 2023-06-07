@@ -29,11 +29,11 @@ namespace UWPTaskManagement.Dialogs
             DataContext = mvm;
 
             var sort = (DataContext as MainViewModel).SortBy;
-            if(sort == "PRIORITY")
+            if (sort == "PRIORITY")
             {
                 PrioritySort.IsChecked = true;
-            } 
-            else if(sort == "ITEM ID")
+            }
+            else if (sort == "ITEM ID")
             {
                 IDSort.IsChecked = true;
             }
@@ -43,18 +43,18 @@ namespace UWPTaskManagement.Dialogs
         private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
             bool propchange = false;
-            if((DataContext as MainViewModel).SortBy != _sort)
+            if ((DataContext as MainViewModel).SortBy != _sort)
             {
                 (DataContext as MainViewModel).SortBy = _sort;
                 propchange = true;
             }
 
-            if((DataContext as MainViewModel).ShowComplete != _importCheck)
+            if ((DataContext as MainViewModel).ShowComplete != _importCheck)
             {
                 propchange = true;
             }
 
-            if(propchange)
+            if (propchange)
             {
                 (DataContext as MainViewModel).NotifyPropertyChanged("Items");
             }

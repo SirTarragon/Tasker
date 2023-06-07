@@ -33,12 +33,12 @@ namespace UWPTaskManagement.ViewModels
                 IEnumerable<ItemViewModel> returnal = itemService.Items.Where(
                     i => (!ShowComplete && !((i.BoundItem as ToDoDTO)?.IsCompleted ?? false)) || ShowComplete);
 
-                    
-                if(SortBy == "PRIORITY")
+
+                if (SortBy == "PRIORITY")
                 {
                     returnal = new ObservableCollection<ItemViewModel>(returnal.OrderByDescending(i => i.Priority));
                 }
-                else if(SortBy == "ITEM ID")
+                else if (SortBy == "ITEM ID")
                 {
                     returnal = new ObservableCollection<ItemViewModel>(returnal.OrderBy(i => i.ID));
                 }
@@ -49,7 +49,7 @@ namespace UWPTaskManagement.ViewModels
 
         public ItemViewModel SelectedItem { get; set; }
         public bool ShowComplete { set; get; }
-        public string Query 
+        public string Query
         {
             get
             {
@@ -60,7 +60,7 @@ namespace UWPTaskManagement.ViewModels
             {
                 itemService.Query = value;
             }
-        
+
         }
         public bool UseAPI
         {

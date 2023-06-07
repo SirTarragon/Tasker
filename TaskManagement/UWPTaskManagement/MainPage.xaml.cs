@@ -42,12 +42,12 @@ namespace UWPTaskManagement
                 LoadButton.Content = "OFFLINE";
             }
         }
-/*
-        private void Save_Click(object sender, RoutedEventArgs e)
-        {
-            (DataContext as MainViewModel).Save(persistencePath);
-        }
-*/
+        /*
+                private void Save_Click(object sender, RoutedEventArgs e)
+                {
+                    (DataContext as MainViewModel).Save(persistencePath);
+                }
+        */
         private void Load_Click(object sender, RoutedEventArgs e)
         {
             (DataContext as MainViewModel).UseAPI = !(DataContext as MainViewModel).UseAPI;
@@ -157,7 +157,7 @@ namespace UWPTaskManagement
         {   // to allow for item deselection, selection mode set to multiple
             // this is to prevent more than one item from being in SelectedItems
             ListBox listBox = sender as ListBox;
-            if( e.AddedItems.Count > 0)
+            if (e.AddedItems.Count > 0)
             {
                 object last = e.AddedItems[0];
                 foreach (object item in listBox.SelectedItems)
@@ -165,8 +165,8 @@ namespace UWPTaskManagement
                     if (item != last) { _ = listBox.SelectedItems.Remove(item); }
                 }
                 ItemManip.Content = "Edit Selected";
-            } 
-            else if ( e.AddedItems.Count == 0)
+            }
+            else if (e.AddedItems.Count == 0)
             {
                 ItemManip.Content = "New Item";
             }

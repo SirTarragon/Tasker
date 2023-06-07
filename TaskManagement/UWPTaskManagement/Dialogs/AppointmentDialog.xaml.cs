@@ -93,11 +93,11 @@ namespace UWPTaskManagement.Dialogs
         {
             object selectedItem = AttendeeListBox.SelectedItem;
             var inputbox = Attendee.Text as string;
-            if(selectedItem != null)
+            if (selectedItem != null)
             {
                 (DataContext as AppointmentDTO).Attendees.Remove(selectedItem as string);
-            } 
-            else if(inputbox != null && (DataContext as AppointmentDTO).Attendees.Any(i => i.ToUpper().Equals(inputbox.ToUpper())))
+            }
+            else if (inputbox != null && (DataContext as AppointmentDTO).Attendees.Any(i => i.ToUpper().Equals(inputbox.ToUpper())))
             {
                 var item = (DataContext as AppointmentDTO).Attendees.FirstOrDefault(i => i.ToUpper().Equals(inputbox.ToUpper()));
                 var index = (DataContext as AppointmentDTO).Attendees.IndexOf(item);

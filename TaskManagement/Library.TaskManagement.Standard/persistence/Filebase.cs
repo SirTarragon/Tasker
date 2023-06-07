@@ -20,7 +20,7 @@ namespace Library.TaskManagement.Standard.persistence
         {
             get
             {
-                if(_instance == null)
+                if (_instance == null)
                 {
                     _instance = new Filebase();
                 }
@@ -37,7 +37,7 @@ namespace Library.TaskManagement.Standard.persistence
 
             if (Directory.Exists(_root))
             {
-//                Directory.CreateDirectory(_root);
+                //                Directory.CreateDirectory(_root);
                 if (!Directory.Exists(_appointmentRoot))
                 {
                     Directory.CreateDirectory(_appointmentRoot);
@@ -52,13 +52,13 @@ namespace Library.TaskManagement.Standard.persistence
 
         public Item AddOrUpdate(Item item)
         {
-            if(item.ID <= 0)
+            if (item.ID <= 0)
             {
                 item.ID = ItemService.Current.NextID;
             }
 
             string path;
-            if(item is ToDo)
+            if (item is ToDo)
             {
                 path = $"{_todoRoot}/{item.ID}.json";
             }
@@ -95,7 +95,7 @@ namespace Library.TaskManagement.Standard.persistence
 
             if (!string.IsNullOrEmpty(path) && File.Exists(path))
             {
-                if(IsToDo)
+                if (IsToDo)
                 {
                     return JsonConvert.DeserializeObject<ToDo>(
                     File.ReadAllText(path));
@@ -136,7 +136,7 @@ namespace Library.TaskManagement.Standard.persistence
                         _todos = null;
                     }
                 }
-                catch(Exception e)
+                catch (Exception e)
                 {  // nuke the exception
                     Console.WriteLine(e);
                     _todos = null;
@@ -160,12 +160,12 @@ namespace Library.TaskManagement.Standard.persistence
                         _apps.Add(app);
                     }
 
-                    if(_apps.Count == 0)
+                    if (_apps.Count == 0)
                     {
                         _apps = null;
                     }
                 }
-                catch(Exception e)
+                catch (Exception e)
                 {  // nuke the exception
                     Console.WriteLine(e);
                     _apps = null;

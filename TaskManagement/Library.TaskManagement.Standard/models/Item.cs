@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 namespace Library.TaskManagement.models
 {
     [JsonConverter(typeof(ItemJsonConverter))]
-    public class Item: IItem
+    public class Item : IItem
     {
         [JsonProperty]
         public int ID { get; set; }
